@@ -75,3 +75,17 @@ WHERE budget >= 1000000;
 SELECT *
 FROM films
 WHERE budget <= 1000000;
+
+
+-- ==========================================
+-- NOTE: COUNT() WITH WHERE
+-- ==========================================
+
+-- PURPOSE:
+-- Count the records with at least 100,000 votes.
+
+SELECT COUNT(num_votes) AS films_over_100k_votes
+FROM reviews
+WHERE num_votes >= 100000;
+
+
