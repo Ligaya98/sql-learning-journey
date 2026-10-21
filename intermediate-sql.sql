@@ -89,3 +89,58 @@ FROM reviews
 WHERE num_votes >= 100000;
 
 
+-- ==========================================
+-- NOTE: BETWEEN OPERATOR
+-- ==========================================
+
+-- PURPOSE:
+-- Select films released between 1990 and 2000.
+
+SELECT title, release_year
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000;
+
+
+-- ==========================================
+-- NOTE: SQL FILTERING OPERATORS
+-- ==========================================
+
+-- AND
+-- Both conditions must be TRUE.
+
+-- OR
+-- At least one condition must be TRUE.
+
+-- BETWEEN
+-- Checks whether a value falls within a range.
+-- Includes both the lower and upper boundaries.
+
+-- LIKE
+-- Searches for a specific pattern in text.
+
+-- NOT LIKE
+-- Finds text values that do not match a pattern.
+
+-- IN
+-- Checks whether a value matches any value in a list.
+
+-- NOT IN
+-- Checks whether a value is not included in a list.
+
+-- ==========================================
+-- NOTE: LIKE WILDCARDS
+-- ==========================================
+
+-- % = Matches zero or more characters.
+-- _ = Matches exactly one character.
+
+-- ==========================================
+-- IMPORTANT REMINDERS
+-- ==========================================
+
+-- AND and OR combine multiple conditions.
+-- Use parentheses to control condition evaluation.
+-- BETWEEN includes both boundary values.
+-- LIKE case sensitivity depends on the SQL database.
+-- Comparisons involving NULL do not evaluate to TRUE.
+
