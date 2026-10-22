@@ -181,3 +181,46 @@ FROM films;
 -- Interpretation: Calculates film profit by subtracting
 -- budget from gross revenue.
 
+
+-- ==========================================
+-- NOTE: COUNT() AND PERCENTAGES
+-- ==========================================
+
+SELECT COUNT(deathdate) * 100.0 / COUNT(people) AS percentage_dead
+FROM people;
+
+-- COUNT(deathdate) counts non-NULL death dates.
+-- COUNT(people) counts non-NULL values in the people column.
+-- Multiply by 100.0 to calculate the percentage.
+
+
+-- ==========================================
+-- NOTE: CALCULATING DECADES
+-- ==========================================
+
+-- MAX() returns the latest release year.
+-- MIN() returns the earliest release year.
+-- Subtraction finds the difference between the years.
+-- Divide by 10.0 to express the time span in decades.
+
+SELECT (MAX(release_year) - MIN(release_year)) / 10.0
+    AS number_of_decades
+FROM films;
+
+-- Interpretation: Calculates the time span between the
+-- earliest and latest film release years in decades.
+
+
+-- ==========================================
+-- NOTE: ROUND() AND ALIASES
+-- ==========================================
+
+-- ROUND(value, 2) rounds a value to two decimal places.
+-- Divide duration by 60.0 to convert minutes to hours.
+-- AS assigns a name to the result column.
+
+SELECT title, ROUND(duration / 60.0, 2) AS duration_hours
+FROM films;
+
+-- Interpretation: Displays each film's title and duration
+-- in hours, rounded to two decimal places.
