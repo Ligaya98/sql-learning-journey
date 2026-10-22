@@ -224,3 +224,64 @@ FROM films;
 
 -- Interpretation: Displays each film's title and duration
 -- in hours, rounded to two decimal places.
+
+
+-- ==========================================
+-- NOTE: GROUP BY AND COUNT()
+-- ==========================================
+
+-- GROUP BY groups rows with the same value.
+-- COUNT(*) counts all rows in each group.
+
+SELECT release_year, COUNT(*) AS film_count
+FROM films
+GROUP BY release_year;
+
+-- Interpretation: Counts the number of films released
+-- in each year.
+
+
+-- ==========================================
+-- NOTE: GROUP BY, COUNT(DISTINCT), AND HAVING
+-- ==========================================
+
+-- COUNT(DISTINCT column) counts unique values.
+-- GROUP BY groups records by a column.
+-- HAVING filters groups based on a condition.
+
+SELECT country, COUNT(DISTINCT certification) AS certification_count
+FROM films
+GROUP BY country
+HAVING COUNT(DISTINCT certification) > 10;
+
+
+-- ==========================================
+-- PROJECT: STUDENTS' MENTAL HEALTH
+-- ==========================================
+
+-- WHERE filters international students.
+-- Use the exact value stored in inter_dom, such as 'Inter'.
+-- DISTINCT shows unique values in a column.
+-- COUNT(inter_dom) counts non-NULL values.
+-- AVG() calculates the average and ignores NULL values.
+-- ROUND(AVG(column), 2) rounds the average to 2 decimal places.
+-- GROUP BY stay calculates results for each length of stay.
+-- ORDER BY stay DESC sorts from longest to shortest stay.
+-- LIMIT 9 returns up to 9 rows.
+
+SELECT
+    stay AS stay,
+    COUNT(inter_dom) AS count_int,
+    ROUND(AVG(todep), 2) AS average_phq,
+    ROUND(AVG(tosc), 2) AS average_scs,
+    ROUND(AVG(toas), 2) AS average_as
+FROM students
+WHERE inter_dom = 'Inter'
+GROUP BY stay
+ORDER BY stay DESC
+LIMIT 9;
+
+-- Interpretation:
+-- Compares average depression, social connectedness, and
+-- acculturative stress scores by length of stay among
+-- international students.
