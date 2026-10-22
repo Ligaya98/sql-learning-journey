@@ -144,3 +144,40 @@ WHERE release_year BETWEEN 1990 AND 2000;
 -- LIKE case sensitivity depends on the SQL database.
 -- Comparisons involving NULL do not evaluate to TRUE.
 
+
+-- ==========================================
+-- NOTE: AVG() AND ROUND()
+-- ==========================================
+
+-- AVG() calculates the average value.
+-- ROUND(value, 2) rounds to 2 decimal places.
+-- WHERE filters records based on a condition.
+-- AS assigns an alias to the result column.
+
+SELECT ROUND(AVG(budget), 2) AS avg_budget
+FROM films
+WHERE release_year >= 2010;
+
+-- ROUND(value, 0) rounds to 0 decimal places (whole number).
+
+SELECT ROUND(AVG(budget), 0) AS avg_budget
+FROM films
+WHERE release_year >= 2010;
+
+-- Interpretation: Calculates the average budget of films
+-- released in 2010 or later, rounded to a whole number.
+
+
+-- ==========================================
+-- NOTE: ARITHMETIC OPERATIONS
+-- ==========================================
+
+-- Subtraction (-) subtracts one value from another.
+-- AS assigns an alias to the result column.
+
+SELECT (gross - budget) AS profit
+FROM films;
+
+-- Interpretation: Calculates film profit by subtracting
+-- budget from gross revenue.
+
