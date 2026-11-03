@@ -285,3 +285,45 @@ LIMIT 9;
 -- Compares average depression, social connectedness, and
 -- acculturative stress scores by length of stay among
 -- international students.
+
+
+-- #20 CTE with Subquery and Aggregate Functions
+
+-- Set up a CTE to calculate total goals for each match
+WITH match_list AS (
+    SELECT 
+        country_id,
+        (home_goal + away_goal) AS goals
+    FROM match
+    -- Filter matches played in August of the 2013/2014 season
+    WHERE id IN (
+        SELECT id
+        FROM match
+        WHERE season = '2013/2014'
+          AND EXTRACT(MONTH FROM date) = 8
+    )
+)
+
+-- Select league names and calculate their average goals
+SELECT 
+    l.name,
+    AVG(goals)
+FROM league AS l
+-- Join the CTE with the league table using country_id
+LEFT JOIN match_list 
+    ON l.id = match_list.country_id
+GROUP BY l.name;
+
+-- Interpretation:
+-- The CTE named match_list retrieves matches played in August
+-- of the 2013/2014 season and calculates the total goals
+-- scored by adding home_goal and away_goal.
+-- The main query joins the CTE with the league table using
+-- country_id and calculates the average goals for each league.
+
+-- Key Takeaway:
+-- A CTE (Common Table Expression) temporarily stores a query result
+-- that can be referenced by the main query.
+-- A subquery inside WHERE IN filters records based on matching IDs.
+-- AVG() calculates the average goals for each league, while
+-- GROUP BY groups the results by league name.
